@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+    <!--       android:background="@color/colorblack" >-->
+
+    <!--   tools:context="com.example.gwnu.myapplication.MainActivity"> -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/LL">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/img_distance"
+            android:id="@+id/imageView"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/img_gas"
+            android:id="@+id/imageView4"/>
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/img_temperture"
+            android:id="@+id/imageView3"/>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="235dp">
+        <Button
+            android:text="Insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/insert" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:text="0"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/DistanceValue"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/GasValues" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:text="ViewChart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/chart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_weight="0.22" />
+
+        <Button
+            android:text="ViewDataList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/button2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/Connect"
+            android:background="?android:attr/actionModeWebSearchDrawable"
+            android:layout_width="35dp"
+            android:elevation="0dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+    <TextView
+        android:text="0"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HumidityValues"
+        android:layout_marginEnd="25dp"
+        android:layout_alignBaseline="@+id/TempertureValue"
+        android:layout_alignBottom="@+id/TempertureValue"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="0"
+        android:textSize="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TempertureValue"
+        android:layout_marginEnd="12dp"
+        android:layout_alignBottom="@+id/GasValues"
+        android:layout_toStartOf="@+id/HumidityValues" />
+
+    <TextView
+
+        android:text="0"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/DistanceValue"
+
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/LL"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
