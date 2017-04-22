@@ -29,17 +29,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     Button viewchart = null;
 
-   // private RelativeLayout mLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "SensorVal.db", null, 1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-  //      mLayout = (RelativeLayout) findViewById(R.id.activity_main);
-//        mLayout.setBackgroundColor(Color.rgb(0,0,0));
-
 
         result = (TextView) findViewById(R.id.result);
         etDis = (TextView) findViewById(R.id.DistanceValue);
@@ -47,7 +41,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         etTem = (TextView) findViewById(R.id.TempertureValue);
         etHum = (TextView) findViewById(R.id.HumidityValues);
 
-        /*dbHelper.insert("20160901115206", 13, 24.0, 20, 61);
+        /*example data
+        dbHelper.insert("20160901115206", 13, 24.0, 20, 61);
         dbHelper.insert("20160907175106", 13, 24.0, 19, 54);
         dbHelper.insert("20160915115206", 13.1, 23.0, 23, 57);
         dbHelper.insert("20160921115206", 13.1, 22.0, 21, 53);
@@ -96,15 +91,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 
 
-        Button launch2 = (Button)findViewById(R.id.button2);//데이터 리스트 버튼
+        Button launch2 = (Button)findViewById(R.id.button2);//data list button
         launch2.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
 
 // TODO Auto-generated method stub
                 Intent intentViewData = new Intent(MainActivity.this, ViewDataList.class);
-// 두번째 액티비티를 실행하기 위한 인텐트
+//for second activity intent
                 startActivity(intentViewData);
-// 두번째 액티비티를 실행합니다.
             }
         });
 
@@ -114,9 +108,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 // TODO Auto-generated method stub
                 Intent intent = new Intent(MainActivity.this, DeviceScanActivity.class);
-// 두번째 액티비티를 실행하기 위한 인텐트
+
                 startActivity(intent);
-// 두번째 액티비티를 실행합니다.
             }
         });
 
