@@ -23,22 +23,22 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public static ArrayList<data> list = new ArrayList<data>();
 
-    // DBHelper 생성자로 관리할 DB 이름과 버전 정보를 받음
+    
+    //get name and version of DB
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    // DB를 새로 생성할 때 호출되는 함수
 
     public void onCreate(SQLiteDatabase db) {
-        // 새로운 테이블 생성
-        /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
-        item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
+        // make new table
+        /* namei s MONEYBOOK, automatically increaisng  _id integer primary key
+        item string , price integer, create_at string. */
         db.execSQL("CREATE TABLE SensorVal (_id INTEGER PRIMARY KEY AUTOINCREMENT, create_at TEXT, dis DOUBLE, gas DOUBLE, tem DOUBLE, hum DOUBLE);");
-        //db.execSQL("CREATE TABLE SensorV (_id INTEGER PRIMARY KEY AUTOINCREMENT, create_at TEXT, dis DOUBLE, gas DOUBLE, temp DOUBLE, hum DOUBLE);");
+        
     }
 
-    // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
+    // for db upgrade, 
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -53,25 +53,16 @@ public class DBHelper extends SQLiteOpenHelper {
         tmp.humidity = hum;
         list.add(tmp);
         System.out.println("INSERT");
-        // 읽고 쓰기가 가능하게 DB 열기
+        //to possible for write, read
         SQLiteDatabase db = getWritableDatabase();
-        // DB에 입력한 값으로 행 추가
+        // add tuple in db
         db.execSQL("INSERT INTO SensorVal VALUES(null, '" + create_at + "', " + dis + ", " + gas + ", " + tem + ", " + hum +");");
-        //db.execSQL("INSERT INTO SensorV VALUES(null, '" + create_at + "', " + dis + ", '" + gas +  ", '" + tem +"');");
         db.close();
 
     }
-    /*
-        public void update(String item, int price) {
-            SQLiteDatabase db = getWritableDatabase();
-            // 입력한 항목과 일치하는 행의 가격 정보 수정
-            db.execSQL("UPDATE MONEYBOOK SET price=" + price + " WHERE item='" + item + "';");
-            db.close();
-        }
-    */
-    public void delete(String date) {
+       public void delete(String date) {
         SQLiteDatabase db = getWritableDatabase();
-        // 입력한 항목과 일치하는 행 삭제
+        // Delete
         db.execSQL("DELETE FROM SensorVal WHERE create_at='" + date + "';");
         list.clear();
         getResult();
@@ -131,13 +122,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return re;
     }
     public String getResult() {
-        // 읽기가 가능하게 DB 열기
+        //Open DB
         int flag = -1;
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
         System.out.println("GETRESULT");
-        // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
+        // for easily pocess data in db, using CursorDB
         Cursor cursor = db.rawQuery("SELECT * FROM SensorVal", null);
         while (cursor.moveToNext()) {
             flag = -1;
