@@ -1,1 +1,1 @@
-# resume
+This project is an android application of structure distance detection. my team cooperated with company that offer module about returning humidity, gas, distance, temperature values. this application is connected to module using BLE. after connected, it show and recored these data.
