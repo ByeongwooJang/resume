@@ -1,4 +1,4 @@
-Structure Health Care Agust 2016 — December 2016
+<b>Structure Health Care Agust 2016 — December 2016</b>
 In charge of devloping on application and DB
 Summary
 
