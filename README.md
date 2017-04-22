@@ -2,16 +2,9 @@
 In charge of devloping on application and DB
 
 Summary
-This project is an android application of structure distance detection. my team cooperated with company that offer module about returning humidity, gas, distance, temperature values. this application is connected to module using BLE. after connected, it show and recored these data.
+This project is an android application of structure distance detection. my team cooperated with company that offer module about returning humidity, gas, distance, temperature values. this application is connected to module using BLE. after connected, it show and recored these data.<br>
 if you want to use this project, just open in the android studio.(essentially you need BLE sensor that returning some values)
-
-Low-cost control system for illegal parking April 2016 — Jun 2016
-In charge of devloping on parking detection.
-Summary
-
-This project is low-cost CCTV that have double ability about parking detection and recording using Raspberry Pi and Java. diffrent of other cctv is it focused to parking detection. as a result of project, i made one thesis.
-
-
+<hr>
 Marble game April 2016 — Jun 2016
 In charge of all of things
 Summary
