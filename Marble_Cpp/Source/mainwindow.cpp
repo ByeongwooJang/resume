@@ -402,7 +402,7 @@ void MainWindow::DiceStart(){
     dice1 = rand() % 3 + 1;//1~3
     dice2 = rand() % 3;//0~3
     static int savePoint = 0;
-    /******************* 무인도 들어간거 캐릭터 출력하기 *****************/
+    /******************* print player who stay in uninhabited island *****************/
     if(players[turn.getTurn()].getIntersection() == -1){
         if(players[turn.getTurn()].getGoldCard() != 2){
            if(savePoint == 0){
@@ -707,8 +707,8 @@ void MainWindow::menu(){
             lv2->close();
             lv3->close();
             flag = 1;
-        }else if(chk_mine(index, mapp.getName()) && mapp.getNoupgrade() == 0){//자기 땅이면
-            switch(mapp.getLevel()){//땅 레벨별로 출력
+        }else if(chk_mine(index, mapp.getName()) && mapp.getNoupgrade() == 0){//if my land
+            switch(mapp.getLevel()){
                 case 0:
                     buy->close();
                     lv2->close();
@@ -859,10 +859,10 @@ void MainWindow::buy__(){
     Language mapp = mmap.at(location);
     if(chk == 1){
         if(mapp.getOwner() == " " && mapp.getNoupgrade() != 2){
-            if((players[turn.getTurn()].getMoney() - mapp.getPrice(0)) > 0){//소지금액이 땅가격보다 많을시 진행
+            if((players[turn.getTurn()].getMoney() - mapp.getPrice(0)) > 0){//if player have more money then land passage money
                 pro[turn.getTurn()]+=1;
-                players[turn.getTurn()].M_Money(mapp.getPrice());//주인없고 땅 사려면 땅가격만큼 돈에서 뺸다.
-                mapp.setOwner("Computer");//맵 주인을 바꿔준다.
+                players[turn.getTurn()].M_Money(mapp.getPrice());//if there is no owner
+                mapp.setOwner("Computer");//change owenr from computer to player
                 players[turn.getTurn()].mine.push_back(mapp);
                 level[location].flag[turn.getTurn()]->show();
                 mmap.at(location) = mapp;
@@ -886,10 +886,10 @@ void MainWindow::buy_(){
     Language mapp = mmap.at(location);
     if(chk == 1){
         if(mapp.getOwner() == " " && mapp.getNoupgrade() != 2){
-            if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(0)) > 0){//소지금액이 땅가격보다 많을시 진행
+            if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(0)) > 0){//if player have less money then land passage money
                 pro[turn.getBeforeTurn()]+=1;
-                players[turn.getBeforeTurn()].M_Money(mapp.getPrice());//주인없고 땅 사려면 땅가격만큼 돈에서 뺸다.
-                mapp.setOwner(players[turn.getBeforeTurn()].getName());//맵 주인을 바꿔준다.
+                players[turn.getBeforeTurn()].M_Money(mapp.getPrice());
+                mapp.setOwner(players[turn.getBeforeTurn()].getName());
                 players[turn.getBeforeTurn()].mine.push_back(mapp);
                 level[location].flag[turn.getBeforeTurn()]->show();
                 mmap.at(location) = mapp;
@@ -909,9 +909,9 @@ void MainWindow::lv_1(){
     int location = players[turn.getBeforeTurn()].getLocation();
     Language mapp = mmap.at(location);
     if(chk == 1){
-        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(1)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(1)) > 0){
             mapp.upLevel();
-            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());
             pro[turn.getBeforeTurn()]+=3;
             mapp.upHacking();
             level[location].level1->show();
@@ -937,9 +937,9 @@ void MainWindow::lv_2(){
     Language mapp = mmap.at(location);
     cout<<turn.getBeforeTurn()<<". "<<"LV2 Price : "<<mapp.getPrice(2)<<" , "<<players[turn.getBeforeTurn()].getMoney()<<endl;
     if(chk == 1){
-        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(2)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(2)) > 0){
             mapp.upLevel();
-            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());
             pro[turn.getBeforeTurn()]+=5;
             mapp.upHacking();
             level[location].level1->close();
@@ -965,9 +965,9 @@ void MainWindow::lv_3(){
     Language mapp = mmap.at(location);
     cout<<turn.getBeforeTurn()<<". "<<"LV3 Price : "<<mapp.getPrice(3)<<" , "<<players[turn.getBeforeTurn()].getMoney()<<endl;
     if(chk == 1){
-        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(3)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getBeforeTurn()].getMoney() - mapp.getPrice(3)) > 0){
             mapp.upLevel();
-            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getBeforeTurn()].M_Money(mapp.getPrice());
             pro[turn.getBeforeTurn()]+=9;
             mapp.upHacking();
             level[location].level2->close();
@@ -992,9 +992,9 @@ void MainWindow::lv__1(){
     int location = players[turn.getTurn()].getLocation();
     Language mapp = mmap.at(location);
     if(chk == 1){
-        if((players[turn.getTurn()].getMoney() - mapp.getPrice(1)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getTurn()].getMoney() - mapp.getPrice(1)) > 0){
             mapp.upLevel();
-            players[turn.getTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getTurn()].M_Money(mapp.getPrice());
             pro[turn.getTurn()]+=3;
             mapp.upHacking();
             level[location].level1->show();
@@ -1019,9 +1019,9 @@ void MainWindow::lv__2(){
     Language mapp = mmap.at(location);
     cout<<turn.getTurn()<<". "<<"LV2 Price : "<<mapp.getPrice(2)<<" , "<<players[turn.getTurn()].getMoney()<<endl;
     if(chk == 1){
-        if((players[turn.getTurn()].getMoney() - mapp.getPrice(2)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getTurn()].getMoney() - mapp.getPrice(2)) > 0){
             mapp.upLevel();
-            players[turn.getTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getTurn()].M_Money(mapp.getPrice());
             pro[turn.getTurn()]+=5;
             mapp.upHacking();
             level[location].level1->close();
@@ -1047,9 +1047,9 @@ void MainWindow::lv__3(){
     Language mapp = mmap.at(location);
     cout<<turn.getTurn()<<". "<<"LV3 Price : "<<mapp.getPrice(3)<<" , "<<players[turn.getTurn()].getMoney()<<endl;
     if(chk == 1){
-        if((players[turn.getTurn()].getMoney() - mapp.getPrice(3)) > 0){//돈을 충분히 갖고 있으면
+        if((players[turn.getTurn()].getMoney() - mapp.getPrice(3)) > 0){
             mapp.upLevel();
-            players[turn.getTurn()].M_Money(mapp.getPrice());//돈을 감한다.
+            players[turn.getTurn()].M_Money(mapp.getPrice());
             pro[turn.getTurn()]+=9;
             mapp.upHacking();
             level[location].level2->close();
@@ -1142,7 +1142,7 @@ int MainWindow::conerGame(){
 }
 void MainWindow::gameExit(){
     dice_->show();
-    if(What == 1 || What == 0)//황금카드수령을 보여주기  위해 비겨도 수령하도록 함.**************************
+    if(What == 1 || What == 0)
         goldCard();
     Coner->close();
 }
@@ -1152,7 +1152,7 @@ void MainWindow::gameExit_(){
 }
 void MainWindow::gameExit__(){
     dice_->show();
-    if(What == 1 || What == 0)//황금카드수령을 보여주기  위해 비겨도 수령하도록 함.***************************
+    if(What == 1 || What == 0)
         goldCard();
     Coner__->close();
 }
@@ -1558,22 +1558,22 @@ void MainWindow::close_(){
     lv3->close();
 }
 
-int MainWindow::moving(int dice){
+int MainWindow::moving(int dice){//player map moving
 
     int index = turn.getTurn();
     int chk = 0;
     before_loc = players[index].getLocation();
 
-    if(players[index].getLocation() == 5 && players[index].getIntersection() == 1){//첫번쨰 교차로에서 intersection == 1이면
+    if(players[index].getLocation() == 5 && players[index].getIntersection() == 1){//if first intersection's value is 1
         cout<<"FIRST CONER ENter"<<endl;
         chk = players[index].getLocation() + 14 + dice;
-        if(chk > 24){//주사위가 6이 나오면
+        if(chk > 24){
             chk -= 10;
         }
         players[index].setLocation(chk);
-    }else if(players[index].getLocation() == 10 && players[index].getIntersection() == 1){//두번쨰 교차로에서 intersection == 1이면
+    }else if(players[index].getLocation() == 10 && players[index].getIntersection() == 1){//if second intersection's value is 1
         chk = players[index].getLocation() + 14 + dice;
-        if(chk > 28){//주사위가 6이 나오면 && 한바퀴 돌면 돈과 카운트 ++
+        if(chk > 28){
             players[index].countPlus();
             players[index].moneyPlus();
             chk = 0;
@@ -1590,35 +1590,35 @@ int MainWindow::moving(int dice){
         default:
             players[index].setLocation(chk);
         }
-    }else if(players[index].getLocation() == 22 && players[index].getIntersection() == 1){//세번쨰 교차로에서 intersection == 1이면
+    }else if(players[index].getLocation() == 22 && players[index].getIntersection() == 1){////if third intersection's value is 1
         chk = players[index].getLocation() + 4 + dice;
-        if(chk > 28){//주사위가 6이 나오면 && 한바퀴 돌면 돈과 카운트 ++
+        if(chk > 28){
             players[index].countPlus();
             players[index].moneyPlus();
             chk -= 29;
         }
         players[index].setLocation(chk);
-    }else if(players[index].getLocation() >= 20 && players[index].getLocation() <= 24){//첫 번쨰 사선길이면
+    }else if(players[index].getLocation() >= 20 && players[index].getLocation() <= 24){
         chk = players[index].getLocation() + dice;
-        if(chk == 30){//한바퀴 돌면 돈과 카운트 ++
+        if(chk == 30){
             players[index].countPlus();
             players[index].moneyPlus();
             chk = 0;
-        }if(chk > 24){//주사위가 6이 나오면
+        }if(chk > 24){
             chk -= 10;
         }
         players[index].setLocation(chk);
-    }else if(players[index].getLocation() >= 25 && players[index].getLocation() <= 34){// 두번째 사선길
+    }else if(players[index].getLocation() >= 25 && players[index].getLocation() <= 34){
         static int aaa  = 0;
         chk = players[index].getLocation() + dice;
-        if(chk > 29){//한바퀴 돌면 돈과 카운트 ++
+        if(chk > 29){
             players[index].countPlus();
             players[index].moneyPlus();
             chk -= 29;
             players[index].setLocation(chk);
         }else if(chk == 29){
             if(players[index].getLocation() == 27){
-                if(chk >= 29){//한바퀴 돌면 돈과 카운트 ++
+                if(chk >= 29){
                     players[index].countPlus();
                     players[index].moneyPlus();
                     chk -= 29;
@@ -1638,9 +1638,9 @@ int MainWindow::moving(int dice){
         }else{
             players[index].setLocation(chk);
         }
-    }else if(players[index].getLocation() >= 14 && players[index].getLocation() <= 19){//일반루트
+    }else if(players[index].getLocation() >= 14 && players[index].getLocation() <= 19){
         chk = players[index].getLocation() + dice;
-        if(chk > 19){//한바퀴 돌면 돈과 카운트++
+        if(chk > 19){
             players[index].countPlus();
             players[index].moneyPlus();
             chk -= 20;
@@ -1658,7 +1658,7 @@ int MainWindow::moving(int dice){
 void MainWindow::moving_chk(){
     int index = turn.getTurn();
 
-    if(players[index].getLocation()== 5){//첫번쨰
+    if(players[index].getLocation()== 5){
         cout<<"1 coner"<<endl;
         dice_->close();
         buy->close();
@@ -1705,13 +1705,13 @@ void MainWindow::moving_chk(){
         lv3->close();
         switch(conerGame()){
             case -1:
-                players[index].setIntersection(-1);//무인도
+                players[index].setIntersection(-1);
                 break;
             case 0:
                 players[index].setIntersection(0);
                 break;
             case 1:
-                players[index].setIntersection(1);//세계여행
+                players[index].setIntersection(1);
                 break;
         }
         cout<<players[index].getIntersection()<<endl;
@@ -1727,10 +1727,10 @@ void MainWindow::moving_chk(){
                 players[index].setIntersection(-1);
                 break;
             case 0:
-                players[index].setIntersection(0);//무인도
+                players[index].setIntersection(0);
                 break;
             case 1:
-                players[index].setIntersection(1);//세계여행
+                players[index].setIntersection(1);
                 break;
         }
     }
@@ -1738,13 +1738,13 @@ void MainWindow::moving_chk(){
 
 void MainWindow::moving_image_load(){
     QString pwd[4], pwd_1[4][2], pwd_2[4][2];
-    //정지
+    //stop images
     pwd[0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\character_1.png";
     pwd[1] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\character_2.png";
     pwd[2] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\character_3.png";
     pwd[3] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\character_4.png";
 
-    //왼쪽바라보는
+    //left side
     pwd_1[0][0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_1_mv_4.png";
     pwd_1[0][1] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_1_mv_3.png";
     pwd_1[1][0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_2_mv_4.png";
@@ -1753,7 +1753,7 @@ void MainWindow::moving_image_load(){
     pwd_1[2][1] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_3_mv_3.png";
     pwd_1[3][0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_4_mv_4.png";
     pwd_1[3][1] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_4_mv_3.png";
-    //오른쪽 바라보는
+    //right side
     pwd_2[0][0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_1_mv_rv_4.png";
     pwd_2[0][1] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_1_mv_rv_3.png";
     pwd_2[1][0] = "C:\\Users\\aolo26698824\\Desktop\\QT\\character\\ch_2_mv_rv_4.png";
