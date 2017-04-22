@@ -101,8 +101,8 @@ public class BluetoothLeService extends Service {
 
     // Implements callback methods for GATT events that the app cares about.  For example,
     // connection change and services discovered.
-    // 연결상태에 변화가 있을경우 실행 된다.
-    // 객체를 생성하면서 내부에 함수가 정의된건 콜백함수여서 그렇다
+    //if there is some changes, it perform
+
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
@@ -110,8 +110,7 @@ public class BluetoothLeService extends Service {
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 intentAction = ACTION_GATT_CONNECTED;
                 mConnectionState = STATE_CONNECTED;
-                broadcastUpdate(intentAction);//현재 어떤 행동이 수행되고 있는지 방송되는데
-                //누구에게 방송되는지는 함수 정의를 참고
+                broadcastUpdate(intentAction);//brodcast what actions doing for which
                 Log.i(TAG, "Connected to GATT server.");
                 // Attempts to discover services after successful connection.
                 Log.i(TAG, "Attempting to start service discovery:" +
@@ -257,12 +256,12 @@ public class BluetoothLeService extends Service {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             //인텐트 클래스의 getAction함수는 해당 액티비티가 어떠한 동작을 수행했는지를 문자열로 넘긴다.
-            //우리는 아래와 같은것들만 체크한다.
+            //->getAction is returning about string array that which activiy was waht did
             // ACTION_GATT_CONNECTED: GATT서버에 연결
             // ACTION_GATT_DISCONNECTED: GATT서버에 연결해지
             // ACTION_GATT_SERVICES_DISCOVERED: GATT서비스에 발견
             // ACTION_DATA_AVAILABLE: 장치로부터 데이터 수신
-            //gatt가 아직 정확히 뭔지 모르겠음...
+            
 
             if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
 
