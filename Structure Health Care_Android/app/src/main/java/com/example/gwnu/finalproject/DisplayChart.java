@@ -30,25 +30,6 @@ public class DisplayChart extends AbstractDemoChart
     List<DBHelper.data> listDB = DBHelper.list;
     List<Date> listInputDate = new ArrayList<Date>();
 
-//    int iSize = listDB.size();
-//
-//    int dataTypeCount = titles.length;
-//
-//    for(int j = 0; j < dataTypeCount; ++j) {
-//      Date[] dateValues = new Date[iSize];
-//
-//      for (int i = 0; i < iSize; ++i) {
-//        String date = listDB.get(i).date;
-//        String year = date.substring(0, 4);
-//        String month = date.substring(4, 6);
-//        String day = date.substring(6, 8);
-//
-//        dateValues[i] = new Date(Integer.parseInt(year) - 1900, Integer.parseInt(month), Integer.parseInt(day));
-//      }
-//
-//      dates.add(dateValues);
-//    }
-
 
     int iSize = listDB.size();
     for(int i = 0 ; i < iSize; ++i)
@@ -125,10 +106,9 @@ public class DisplayChart extends AbstractDemoChart
 
     setChartSettings(renderer, "Values", "Date", "%", dates.get(0)[0].getTime(), dates.get(0)[dates.get(0).length - 1].getTime(), -20, 100, Color.YELLOW, Color.MAGENTA);
 
-    renderer.setYLabels(20);//한  화면에 레이블이 몇개나 보이도록 할건지. 클수록 간격이 좁아진다
+    renderer.setYLabels(20);//margin
     renderer.setXLabels(5);
-//    renderer.setlabel
-    //renderer.setDisplayValues(true);
+
 
     return ChartFactory.getTimeChartIntent(context, buildDateDataset(titles, dates, values),renderer, "yyyy/MM/dd");
     
