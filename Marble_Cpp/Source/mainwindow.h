@@ -32,9 +32,9 @@ using namespace std;
 
 //***********GAME CLASS************
 
-class special{//Language에 대한 부가정보(유저)
+class special{//Language's info
 protected:
-      string play[4];//땅에 어떤 플레이어가 있는지 나타낼 변수
+      string play[4];//which player is which land is stay
 public:
       void setUser(string user, int index){ play[index] = user; }
       string getUser(int index){ return play[index];}
@@ -43,13 +43,13 @@ class Level{
     public:QLabel *level1, *level2, *level3;
     public:QLabel *flag[4];
 };
-class Language : public special{//언어 클래스(땅)
+class Language : public special{//land class
 protected:
-      string name;//
-      string owner;//언어 주인
-      int level;//언어 레벨
-      int price[4];//가격
-      int hacking[4];//통행료
+      string name;
+      string owner;
+      int level;
+      int price[4];
+      int hacking[4];//passage money
       int hackingIndex;
       int noUpgrade;
       int loc;
@@ -79,12 +79,12 @@ public:
         hacking[2] = middlePay;
         hacking[3] = highPay;
         hackingIndex = 0;
-      } //맵에대한 정보
+      } //info about map
 
       void setOwner(string owner){this->owner = owner;level = 0;}//소유자 등록
       void initOwner(){this->owner =" ";}
-      void upHacking(){hackingIndex++;}//통행료 증가
-      void upLevel(){level++;}//레벨증가
+      void upHacking(){hackingIndex++;}//passage money increase
+      void upLevel(){level++;}//level increase
       string getName() { return name;}
       string getOwner(){return owner;}
       int getPrice(){return price[level];}
@@ -101,7 +101,7 @@ private:
       int money;
       int location;
       int property;
-      int goldCard;//황금카드 번호
+      int goldCard;
       int intersection;
       int count;
       int saveLoc;
@@ -109,11 +109,11 @@ private:
       bool death_chk;
 public:
       Player(){intersection = -2; goldCard = -1; count = 0; money = 200; death = false; death_chk = false; property = 0; saveLoc = -1;}
-      void setPlayer(int money, int location){ this->money = money; this->location = location; }//플레이어 정보 저장
-      void setLocation(int loc){location = loc;}//플레이어 위치변경
+      void setPlayer(int money, int location){ this->money = money; this->location = location; }
+      void setLocation(int loc){location = loc;}//player location change
       void setGoldCard(int num){ goldCard = num;}
-      void M_Money(int mon){money -= mon;}//플레이어 돈 변경
-      void P_Money(int mon){money += mon;}
+      void M_Money(int mon){money -= mon;}
+      void P_Money(int mon){money += mon;}//plus
       void setIntersection(int in){ intersection = in;}
       void setName(string name){ this->name = name;}
       void moneyPlus(){money += 30;}
@@ -123,9 +123,9 @@ public:
       int getGoldCard(){return goldCard;}
       int getSaveLoc(){return saveLoc;}
       int getIntersection(){return intersection;}
-      int getLocation(){return location;}//플레이어 위치리턴
-      int getMoney(){return money;}//플레이어 돈 리턴
-      int getCount(){return count;}//몇 바퀴를 돌았는가
+      int getLocation(){return location;}
+      int getMoney(){return money;}
+      int getCount(){return count;}//how many runs
       bool getDeath(){return death;}
       void setDeath(){death = true;}
       void setProperty(int pro){ this->property += pro;}
@@ -143,17 +143,13 @@ private:
       int i = 0;
       int origin;
       int k = 0;
-public:/*
-
-배열 이용해서 파산한놈 인덱스는 뺴고 턴 계속 넘기는거 하자!
-
-*/
+public:
       Game(){
           arr_turn[0] = 0;
           arr_turn[1] = 1;
           arr_turn[2] = 2;
           arr_turn[3] = 3;
-      }//턴
+      }//turn
       Game(int size){
           origin = size;
           turn_size = size;
@@ -163,7 +159,7 @@ public:/*
           i++;
           i = i % turn_size;
           k = i;
-      }//턴 셋팅
+      }
       int getNextTurn(){
           k;
           if(arr_turn[++k % turn_size] != -1)
@@ -204,7 +200,7 @@ public:/*
           return arr_turn[a];
       }
 
-      //int conerGame();//각 코너진입시 게임실행
+      //int conerGame();
       int getOrigin(){return origin;}
       void setTurnSize(int k){turn_size = k;}
       int getTurnSize(){return turn_size;}
