@@ -1,7 +1,7 @@
 <h2>Structure Health Care Agust 2016 — December 2016</h2>
 In charge of devloping on application and DB
 
-Summary
+<strong>Summary</strong><br>
 This project is an android application of structure distance detection. my team cooperated with company that offer module about returning humidity, gas, distance, temperature values. this application is connected to module using BLE. after connected, it show and recored these data.<br>
 if you want to use this project, just open in the android studio.(essentially you need BLE sensor that returning some values)
 <hr>
