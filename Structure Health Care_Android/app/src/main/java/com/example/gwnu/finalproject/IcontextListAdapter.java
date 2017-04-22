@@ -93,11 +93,11 @@ public class IcontextListAdapter extends BaseAdapter {
     }
 
 
-    // 화면 구성하는 getView
+    // getView is organize display
 
-    // convertView가 null이 아니면 뷰는 재활용하고 안의 데이터만 바꿔주어 퍼포먼스 향상
+    // if convertView is not null reuse view, else change data in view
 
-    // null인 경우에는 새로 객체 생성해줌
+    // if null, make object
 
     @Override
 
