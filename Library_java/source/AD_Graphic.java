@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class AD_Graphic extends JFrame{
 	JFrame layeredPan01;
 
-	String DP[] = {"ÄÄÇ»ÅÍ°øÇĞ","¸ÖÆ¼¹Ìµğ¾î","Á¤º¸±â¼ú°ú","Àü±â°øÇĞ°ú","Á¤º¸Åë½Å°ú","±â°èÀÚµ¿Â÷","»ê¾÷°æ¿µ°ú","°£È£ÇĞ°ú","À¯¾Æ±³À°°ú","´Ù¹®È­ÇĞ°ú","º¹ÁöÇĞ°ú"};
+	String DP[] = {"ì»´í“¨í„°ê³µí•™","ë©€í‹°ë¯¸ë””ì–´","ì •ë³´ê¸°ìˆ ê³¼","ì „ê¸°ê³µí•™ê³¼","ì •ë³´í†µì‹ ê³¼","ê¸°ê³„ìë™ì°¨","ì‚°ì—…ê²½ì˜ê³¼","ê°„í˜¸í•™ê³¼","ìœ ì•„êµìœ¡ê³¼","ë‹¤ë¬¸í™”í•™ê³¼","ë³µì§€í•™ê³¼"};
 	JButton back;
 	int aff_count[] = AD_window.aff_count;
 	int selectMon = 0;
@@ -43,7 +43,7 @@ public class AD_Graphic extends JFrame{
 		drawingPanel.setBounds(40, 440, 400, 300);
 		drawingPanel.setVisible(true);
 		
-		//back = new JBtton(new ImageIcon("C:/Users/aolo26698824/workspace/JAVA/src/Library_image/btn_³ª°¡±â.png");
+		//back = new JBtton(new ImageIcon("C:/Users/aolo26698824/workspace/JAVA/src/Library_image/btn_ë‚˜ê°€ê¸°.png");
 		
 		
 		layeredPan01.add(drawingPanel);
@@ -54,7 +54,7 @@ public class AD_Graphic extends JFrame{
 		new AD_Graphic();
 	}
 
-	//±×·¡ÇÇ¸¦ ±×¸®´Â ÆĞ³Î Å¬·¡½º
+	//draw the graph
 	class DrawingPanel extends JPanel{
 		
 		public void paint(Graphics g){
@@ -71,8 +71,8 @@ public class AD_Graphic extends JFrame{
 			g.drawLine(50,20,50,480);
 			for(int i = 0; i < 11; i ++)
 					g.drawString(DP[i],70+i*80,490);
-			g.drawString("´ÜÀ§ : ±Ç",40,520);
-			g.drawString("ÇĞ°úº° Åë°è",450,530);
+			g.drawString("ë‹¨ìœ„ : ê¶Œ",40,520);
+			g.drawString("í•™ê³¼ë³„ í†µê³„",450,530);
 			for(int i = 0; i < 11; i++){
 				g.setColor(Color.RED);
 				g.fillRect(70+i*82,465,10,(int) ((-aff_count[i])*8));
