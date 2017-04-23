@@ -233,67 +233,7 @@ void mk(){
 	}
 
 
-}/*
-void file_writing(char *buf, FILE *f4){
-	printf(" strlen : %d",strlen(buf));
-	int buf_fp = 0;
-	int save = 0;
-	int count = 0;
-	int flag = 0;
-	printf("\nWIRTE  %s  CH SIZE :%d ",buf,CH_SIZE);
-	while(1){
-		for(int i = 0; i < CH_SIZE; i++){
-			for(int k = 0; k < CH[i].len; k++){
-				if(CH[i].code[k] == buf[buf_fp++]){
-					count++;
-				}
-			}
-			if(count == CH[i].len){
-				printf("\ninput :%s (buf : %d, save : %d) -> %c",CH[i].code,buf_fp, save,CH[i].ch);
-				save = buf_fp;
-				fputc(CH[i].ch,f4);
-				flag = 1;
-			}
-			if(flag == 1){
-				buf_fp = save;
-				count = 0;
-			}else{
-				buf_fp = 0;
-				count = 0;
-			}
-		}
-		if(save == strlen(buf))
-			break;
-	}
-
 }
-void file_w(char *buf, FILE *f4){
-	int loc = 0;
-	int count = 0;
-	int save = 0;
-	int flag = 0;
-	for(;;){
-		for(int i = 0; i < CH_SIZE; i++){
-			for(int a = 0, loc = save; CH[i].code[a] != '\0'; i++, loc++){
-				if(buf[loc] == CH[i].code[a]){
-					count++;
-				}
-			}
-			if(count == CH[i].len){
-				fputc(CH[i].ch,f4);
-				int flag = 1;
-			}
-			if(flag == 1){
-				save = loc;
-			}else{
-				loc = 0;
-			}
-			count = 0;
-		}
-		if(save == strlen(buf))
-			break;
-	}
-}*/
 int main(int ar, char *argv[]){
 	int len, choose, totla_len = 0,chk_0 = 0, chk_ht_index = -1, ff_flag = 0, i,k,g,jump_flag;
 	int location = 0, location2 = 0;
